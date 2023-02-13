@@ -1,0 +1,22 @@
+---
+- name: Using Secrets in Playbook
+  hosts: local
+  become: true 
+  vars_files:
+    - user-passwd.yaml
+  tasks:
+    - name: Create User
+      user:
+        name: "{{ username }}"
+        password: "{{ passwd | password_hash('sha256')}}"
+        state: present
+        shell: /bin/bash
+        expires: 365
+        groups: wheel
+        #become: yes
+        #become_method: "sudo"
+        generate_ssh_key: true
+        #ssh_key_bit: "2048"
+        ssh_key_file: .ssh/id_rsa
+        #password_expire_max: 10
+        #password_expire_min: 5

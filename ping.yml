@@ -1,0 +1,21 @@
+- hosts: localhost 
+  become: yes  
+  gather_facts: false
+  tasks:
+#   - iname Perform ping test
+    - ping:
+      register: ping_output
+    - name: Print ping output
+#      debug:
+#        - name: for complete ping output
+#          msg: "{{ ping_output }}"
+#        - name: only for particluer value filtered
+#          msg: "{{ ping_output.ping }}"
+#    - name: Setup
+#      setup:
+#      register: os_output
+      debug:
+          msg: "OK"
+          msg: "{{ ping_output.ping }}"
+#          msg: "{{ os_output.ansible_distribution }}"
+

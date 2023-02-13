@@ -1,0 +1,12 @@
+---
+ - name: Ansible Fact Demo
+   hosts: local
+   gather_facts: false
+   tasks:
+     - name: collect facts 
+    #Same can be do by setup module
+       setup:
+     - name: Show details
+       debug:
+         #msg: "OK"
+         msg: "{{ ansible_distribution }},{{ ansible_hostname }},{{ ansible_default_ipv4['address'] }}"
